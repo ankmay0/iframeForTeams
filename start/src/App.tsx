@@ -1,4 +1,12 @@
 import React, { useState } from "react";
+import {
+  Container,
+  TextField,
+  Button,
+  Typography,
+  Box,
+  Paper,
+} from "@mui/material";
 
 const App: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -27,62 +35,88 @@ const App: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2 style={{ textAlign: "center" }}>Embed URL Generator</h2>
-      <form onSubmit={handleSubmit} style={{ padding: "1rem" }}>
-        <input
-          type="text"
-          name="srcName"
-          placeholder="Source Name"
-          value={formData.srcName}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="srcId"
-          placeholder="Source ID"
-          value={formData.srcId}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="srcSkill"
-          placeholder="Source Skill"
-          value={formData.srcSkill}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="targetName"
-          placeholder="Target Name"
-          value={formData.targetName}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="targetId"
-          placeholder="Target ID"
-          value={formData.targetId}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="targetSkill"
-          placeholder="Target Skill"
-          value={formData.targetSkill}
-          onChange={handleChange}
-        />
-        <button type="submit">Generate & Load URL</button>
-      </form>
+    <Container maxWidth="md" sx={{ mt: 4 }}>
+      <Paper elevation={3} sx={{ p: 4 }}>
+        <Typography variant="h4" align="center" gutterBottom>
+          Embed URL Generator
+        </Typography>
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 2,
+          }}
+        >
+          <TextField
+            label="Source Name"
+            name="srcName"
+            value={formData.srcName}
+            onChange={handleChange}
+            fullWidth
+          />
+          <TextField
+            label="Source ID"
+            name="srcId"
+            value={formData.srcId}
+            onChange={handleChange}
+            fullWidth
+          />
+          <TextField
+            label="Source Skill"
+            name="srcSkill"
+            value={formData.srcSkill}
+            onChange={handleChange}
+            fullWidth
+          />
+          <TextField
+            label="Target Name"
+            name="targetName"
+            value={formData.targetName}
+            onChange={handleChange}
+            fullWidth
+          />
+          <TextField
+            label="Target ID"
+            name="targetId"
+            value={formData.targetId}
+            onChange={handleChange}
+            fullWidth
+          />
+          <TextField
+            label="Target Skill"
+            name="targetSkill"
+            value={formData.targetSkill}
+            onChange={handleChange}
+            fullWidth
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            sx={{ mt: 2 }}
+          >
+            Generate & Load URL
+          </Button>
+        </Box>
+      </Paper>
 
       {url && (
-        <iframe
-          src={url}
-          style={{ width: "100%", height: "100vh", border: "none" }}
-          title="Embedded Page"
-        />
+        <Box sx={{ mt: 4 }}>
+          <iframe
+            src={url}
+            title="Embedded Page"
+            style={{
+              width: "100%",
+              height: "80vh",
+              border: "none",
+              borderRadius: "8px",
+            }}
+          />
+        </Box>
       )}
-    </div>
+    </Container>
   );
 };
 
